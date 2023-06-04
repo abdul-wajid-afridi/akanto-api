@@ -6,7 +6,8 @@ const prisma = new PrismaClient();
 const app = express();
 
 console.log("railway");
-
+const data = prisma.user.findMany();
+console.log(data);
 app.get("/users", async (req: Request, res: Response) => {
   const data = await prisma.user.findMany();
   res.json({
@@ -14,6 +15,8 @@ app.get("/users", async (req: Request, res: Response) => {
     data,
   });
 });
+
+console.log("railway2");
 
 app.post(
   "/users",
