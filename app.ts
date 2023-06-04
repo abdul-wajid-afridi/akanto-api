@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 const app = express();
 
 console.log("railway");
-const data = prisma.user.findMany();
-console.log(data);
+const data = prisma.user.findMany().then((data) => console.log(data));
+
 app.get("/users", async (req: Request, res: Response) => {
   const data = await prisma.user.findMany();
   res.json({
