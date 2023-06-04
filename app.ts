@@ -32,4 +32,4 @@ app.post(
   }
 );
 
-app.listen(3007, () => console.log("app runs on port 3007"));
+app.listen(3007, "0.0.0.0", () => console.log("app runs on port 3007"));
