@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 import { UploadFiles } from "./src/utils/Uploads";
-
+// import dotenv from "doten"
 const prisma = new PrismaClient();
 const app = express();
-
+const port = process.env.PORT || 9000;
 console.log("railway");
 const data = prisma.user.findMany().then((data) => console.log(data));
 
@@ -32,4 +32,4 @@ app.post(
   }
 );
 
-app.listen(3007, "0.0.0.0", () => console.log("app runs on port 3007"));
+app.listen(port, () => console.log("app runs on port " + port));

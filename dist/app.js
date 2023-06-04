@@ -15,9 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const express_1 = __importDefault(require("express"));
 const Uploads_1 = require("./src/utils/Uploads");
+// import dotenv from "doten"
 const prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
+const port = process.env.PORT || 9000;
 console.log("railway");
+const data = prisma.user.findMany().then((data) => console.log(data));
 app.get("/users", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = yield prisma.user.findMany();
     res.json({
@@ -25,6 +28,7 @@ app.get("/users", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         data,
     });
 }));
+console.log("railway2");
 app.post("/users", Uploads_1.UploadFiles.single("name"), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const data = yield prisma.user.create({
@@ -35,4 +39,4 @@ app.post("/users", Uploads_1.UploadFiles.single("name"), (req, res) => __awaiter
         data,
     });
 }));
-app.listen(3007, () => console.log("app runs on port 3007"));
+app.listen(port, () => console.log("app runs on port " + port));
